@@ -1,1 +1,168 @@
-here comes the source.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dimaonline</title>
+    <style>
+        blockquote {
+            padding: 10px 20px;
+            margin: 0 0 20px;
+            font-size: 16px;
+            border-left: 5px solid #444c56;
+            color: #636e7b;
+            display: flex;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            font-size: var(--body-font-size, 16px);
+            line-height: 1.5;
+            color: #ccd1db;
+            background-color: #1d1f26;
+            padding: 20px;
+            display: flex;
+        }
+
+        #sidebar {
+            position: fixed; /* Fix the sidebar on the screen */
+            width: 140px;
+            height: 100vh;
+            background-color: #21242c;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 1px;
+            text-align: left;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-y: auto; /* Enable vertical scrolling for the sidebar */
+        }
+
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        #content {
+            width: 100%;
+            height: 100%;
+            margin-left: 180px; /* Adjust the margin to match the width of the sidebar */
+            padding-left: 40px;
+            overflow-y: auto; /* Enable vertical scrolling for the content */
+            overflow-x: hidden; /* Hide horizontal scrollbar for the content */
+        }
+
+        #content h1,
+        #content h2,
+        #content p {
+            color: #ccd1db;
+        }
+
+        a {
+            text-decoration: none;
+            color: #ccd1db;
+        }
+        a:hover {
+            color: #9cb1d8;
+        }
+        #category {
+            color: #6677b3;
+        }
+        hr {
+            color: #6677b3;
+            height: 0.1px;
+        }
+        #glow {
+            text-shadow: 0 0 35px #6677b3, 0 0 20px white;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <ul>
+            <li><h2><a href="#home">dimaonline</a></h2></li>
+            <hr>
+            <li id="category">The Theory of Everything</li>
+            <li><a href="#thefold">- The Fold</a></li>
+            <li><a href="#thepath">- The Path</a></li>
+            <li><a href="#thequire">- The Quire</a></li>
+            
+            <li id="category">Journals</li>
+            <li><a href="#thefold">- Volume I: Grey</a></li>
+            <li><a href="#thepath">- Volume II: White</a></li>
+            <li><a href="#thequire">- Volume III: Black</a></li>
+        </ul>
+    </div>
+    <div id="content">
+
+        <div id="home" class="page active">
+            <h1 id="glow">Welcome!</h1>
+            <p>This is dimaonline!</p>
+            <p>This is the content for "The Path".</p>
+        </div>
+
+        <div id="thefold" class="page">
+            <h2>The Fold</h1>
+            <p>This is the content for "The Fold".</p>
+        </div>
+
+        <div id="thepath" class="page">
+            <h2>The Path</h2>
+            <p>This is the content for "The Path".</p>
+        </div>
+
+        <div id="thequire" class="page">
+            <h2>The Quire</h2>
+            <p>This is the content for "The Quire".</p>
+        </div>
+        <!-- Add more content for categories and pages as needed -->
+    </div>
+
+    <script>
+        // JavaScript to handle page switching
+        function showPage(pageId) {
+            // Hide all pages
+            var pages = document.querySelectorAll('.page');
+            pages.forEach(function(page) {
+                page.classList.remove('active');
+            });
+
+            // Show the selected page
+            var selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
+        }
+
+        // Add click event listeners to the sidebar links
+        var sidebarLinks = document.querySelectorAll('#sidebar a');
+        sidebarLinks.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                // Prevent the default link behavior
+                event.preventDefault();
+                // Get the target page id from the href attribute
+                var targetPageId = link.getAttribute('href').substring(1);
+                // Show the target page
+                showPage(targetPageId);
+            });
+        });
+
+        // Show the initial page on load (optional)
+        showPage('home');
+    </script>
+
+</body>
+</html>
